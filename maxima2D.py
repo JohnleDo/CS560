@@ -1,3 +1,6 @@
+import copy
+
+
 def mergeSort(arr, key):
     sortCount = 0
 
@@ -53,8 +56,8 @@ def groupingPointList(output, pointListNumber):
                            'Point Amount': pointValue,
                            'x': float(output[x].split()[0]),
                            'y': float(output[x].split()[1]),
-                           'maximal': False,
-                           'where': i + 1})
+                           'Maximal': False,
+                           'Where': i + 1})
             i += 1
 
     del output[0:pointValue]
@@ -62,11 +65,39 @@ def groupingPointList(output, pointListNumber):
     return points, output
 
 
+def getMaxima(pointList):
+    x = 1
+    currentMaxima = pointList[0]
+    maximaList = []
+    maximaList.append(currentMaxima)
+
+    while(x != len(pointList)):
+        if pointList[x]['x'] > currentMaxima['x']:
+            currentMaxima['maximal'] = False
+            pointList[x]['maximal'] = True
+            currentMaxima = pointList[x]
+            maximaList.append(currentMaxima)
+
+        elif pointList[x]['x'] == currentMaxima['x']:
+            if pointList[x]['y'] >= currentMaxima['y']:
+                currentMaxima['maximal'] = False
+                pointList[x]['maximal'] = True
+                currentMaxima = pointList[x]
+                maximaList.append(currentMaxima)
+        x += 1
+
+    return {'MaxCtA': x - 1,
+            'maxNumA': len(maximaList),
+            'Maximal Order': maximaList}
+
+
 if __name__ == '__main__':
     filename = 'points1.txt'
     output = []
-    pointList = []
+    pointListX = []
+    pointListY = []
     sortCountList = []
+    maximaList = []
     lock = True
     x = 0
     pointGroupCounter = 0
@@ -78,11 +109,20 @@ if __name__ == '__main__':
     while(lock):
         if output:
             points, output = groupingPointList(output, pointGroupCounter)
-            pointList.append(points.copy())
+            pointListX.append(copy.deepcopy(points))
             pointGroupCounter += 1
         else:
             lock = False
 
-    while(x != len(pointList)):
-        sortCountList.append(mergeSort(pointList[x], 'x'))
+    pointListY = copy.deepcopy(pointListX)
+
+    while(x != len(pointListX)):
+        sortCountList.append(mergeSort(pointListX[x], 'x'))
+        mergeSort(pointListY[x], 'y')
+        x += 1
+
+    x = 0
+    while(x != len(pointListY)):
+        pointListY[x].reverse()
+        maximaList.append(getMaxima(pointListY[x]))
         x += 1
