@@ -91,6 +91,34 @@ def getMaxima(pointList):
             'Maximal Order': maximaList}
 
 
+def printResults(pointList, maximaList, sortCountList):
+    for x in range(len(pointList)):
+        print("Output for the " + str(x) + "-th Set of Points")
+        print("=================================")
+        print("Input Size = " + str(pointList[x][1]['Point Amount']))
+        print("sortCount = " + str(sortCountList[x]))
+        print("maxCountA = " + str(maximaList[x]['MaxCtA']))
+        print("maxNumA = " + str(maximaList[x]['maxNumA']))
+
+        print("\nMaxima(S): (where: x, y)")
+        print("---------------------------")
+        for y in range(len(maximaList[x]['Maximal Order'])):
+            print(str(maximaList[x]['Maximal Order'][y]['Where']) + ": (" +
+                  str(maximaList[x]['Maximal Order'][y]['x']) + ", " +
+                  str(maximaList[x]['Maximal Order'][y]['y']) + ")")
+
+        print("\n=========================================\n")
+
+    print("\n" + "Statistics for the " + str(len(sortCountList)) + " iterations:")
+    print("\nIter SortCt  MaxCtA SortCt+MaxCtA")
+    print("--------------------------------------------------")
+    for z in range(len(pointList)):
+        print("  " + str(z) + "   " + str(sortCountList[z]) + "    " +
+              str(maximaList[z]['MaxCtA']) + "       " +
+              str(sortCountList[z] + maximaList[z]['MaxCtA']))
+    print("\n")
+
+
 if __name__ == '__main__':
     filename = 'points1.txt'
     output = []
@@ -126,3 +154,5 @@ if __name__ == '__main__':
         pointListY[x].reverse()
         maximaList.append(getMaxima(pointListY[x]))
         x += 1
+
+    printResults(pointListX, maximaList, sortCountList)
