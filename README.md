@@ -13,6 +13,7 @@ or
 
 python3 maxima.py
 
-2. If the above method doesn't work you can use the repl.it website to run the code, use this link: 
+2. If the above method doesn't work you can use the repl.it website to run the code, use this link: https://repl.it/@JohnleDo/CS560
+It should run automatically after clicking the link but you can rerun it again if you like by clicking on the green run button.
 
-3. If you want to use a different file with coordinates than points1.txt you can delete the current points1.txt in the directory where maxima.py is and put our new file into that directory and name it points1.txt or go into the source code and change line 127 where it says filename = "points1.txt" and replace points1.txt with the name of your file your wanting to use. 
+Importany Note: If you want to use a different file with coordinates than points1.txt you can delete the current points1.txt in the directory where maxima.py is and put our new file into that directory and name it points1.txt or go into the source code and change line 127 where it says filename = "points1.txt" and replace points1.txt with the name of your file your wanting to use. 
