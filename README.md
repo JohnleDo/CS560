@@ -6,12 +6,8 @@
 3. Make sure to have the maxima.py and points1.txt in the same directory
 
 ## Ways To Run maxima.py
-1. If all requirements are met then download file and cd into directory and run:
-python maxima.py
-
-or 
-
-python3 maxima.py
+1. If all requirements are met then download file and cd into directory and run in terminal:
+python maxima.py or python3 maxima.py
 
 2. If the above method doesn't work you can use the repl.it website to run the code, use this link: https://repl.it/@JohnleDo/CS560
 It should run automatically after clicking the link but you can rerun it again if you like by clicking on the green run button.
